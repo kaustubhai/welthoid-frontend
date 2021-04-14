@@ -27,12 +27,12 @@ export default function Home() {
           </p>
           <button
             type="button"
-            className="py-2 px-4 rounded-lg lg:ml-20 my-10 bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white text-center  lg:w-full w-40 max-w-sm lg:max-w-md transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 "
+            className="py-2 px-4 rounded-lg lg:ml-20 my-10 bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white text-center  lg:w-full w-40 max-w-sm lg:max-w-md transition ease-in duration-200 text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 "
           >
             Start Now
           </button>
         </div>
-          <img src="/header.svg" className="image w-full lg:w-7/12 my-8 lg:my-20 lg:ml-20" />
+          <img src="/svg/header.svg" className="image w-full lg:w-7/12 my-8 lg:my-20 lg:ml-20" />
         </section>
 
         <h2 className="mb-10 text-4xl text-center font-body font-bold">Our Features</h2>

@@ -17,7 +17,7 @@ const Navbar = () => {
             <div className=" flex items-center w-full">
               <Link href="/">
                 <a className="flex-shrink-0">
-                  <img className="h-8 w-8" src="/logo.svg" alt="Logo" />
+                  <img className="h-8 w-8" src="/svg/logo.svg" alt="Logo" />
                 </a>
               </Link>
               <div className="hidden md:block w-full">
@@ -25,33 +25,34 @@ const Navbar = () => {
                   <div>
                   <Link href="/">
                     <a
-                      className={`text-gray-500  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium`}
+                      className={`text-gray-500  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium`}
                     >
                         Home
                     </a>
                   </Link>
                   <Link href="/about">
                     <a
-                      className={`text-gray-500 dark:text-white  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium`}
+                      className={`text-gray-500 dark:text-white  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium`}
                     >
                         About
                     </a>
                   </Link>
                   <Link href="contact">
                     <a
-                      className={`text-gray-500  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium`}
+                      className={`text-gray-500  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium`}
                     >
                         Contact
                     </a>
                   </Link>
                   <Link href="/developer">
                     <a
-                      className={`text-gray-500  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium`}
+                      className={`text-gray-500  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium`}
                     >
                         Developer
                     </a>
                   </Link>
-                    </div>
+                  </div>
+                  <Link href="/dashboard">
                   <a className="ml-auto text-right">
                     <button
                       type="button"
@@ -70,6 +71,7 @@ const Navbar = () => {
                       Sign in with Google
                     </button>
                   </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -124,8 +126,9 @@ const Navbar = () => {
             >
                 Developer
             </a>
-              </Link>
-            <a href="#" className="ml-auto text-right">
+            </Link>
+            <Link href="/dashboard">
+            <a className="ml-auto text-right">
               <button
                 type="button"
                 className="py-2 px-4 flex justify-center items-center  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base mt-5 md:mt-0 font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
@@ -143,6 +146,7 @@ const Navbar = () => {
                 Sign in with Google
               </button>
             </a>
+            </Link>
           </div>
         </div>
       </nav>

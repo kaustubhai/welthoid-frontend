@@ -86,7 +86,7 @@ const about = () => {
                 </ul>
               </div>
               </div>
-              <img className="mx-auto mt-10 md:px-20 lg:px-60" src="/aboutus.svg" alt="About Us"/>
+              <img className="mx-auto mt-10 md:px-20 lg:px-60" src="/svg/aboutus.svg" alt="About Us"/>
           </section>
       <Footer />
     </>

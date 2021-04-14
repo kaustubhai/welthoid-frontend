@@ -12,29 +12,26 @@ const Contact = () => {
           
 <div className="w-full flex justify-center mb-20">
     <form className="flex w-full max-w-sm justify-center space-x-3">
-        <div className="w-full max-w-2xl mx-auto px-5 py-10 m-auto mt-10 bg-white rounded-lg shadow dark:bg-gray-800">
-            <div className="mb-6 text-3xl font-light text-center text-gray-800 dark:text-white">
-                Contact us !
-            </div>
+        <div className="w-full max-w-7xl mx-auto px-5 py-10 m-auto mt-10 bg-white rounded-lg shadow dark:bg-gray-800">
             <div className="grid max-w-xl grid-cols-2 gap-4 m-auto">
                 <div className="col-span-2 lg:col-span-1">
                     <div className=" relative ">
-                        <input type="text" id="contact-form-name" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Name"/>
+                        <input type="text" id="contact-form-name" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm  focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Name"/>
                         </div>
                     </div>
                     <div className="col-span-2 lg:col-span-1">
                         <div className=" relative ">
-                            <input type="text" id="contact-form-email" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="email"/>
+                            <input type="text" id="contact-form-email" className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm  focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="email"/>
                             </div>
                         </div>
                         <div className="col-span-2">
                             <label className="text-gray-700" htmlFor="name">
-                                <textarea className="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" id="comment" placeholder="Enter your comment" name="comment" rows="5" cols="40">
+                                <textarea className="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg  focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" id="comment" placeholder="Enter your comment" name="comment" rows="5" cols="40">
                                 </textarea>
                             </label>
                         </div>
                         <div className="col-span-2 text-right">
-                            <button type="submit" className="py-2 px-4  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                            <button type="submit" className="py-2 px-4  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center  font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                                 Send
                             </button>
                         </div>
@@ -51,7 +48,7 @@ const Contact = () => {
               <a href="#" className="block relative">
                 <img
                   alt="profil"
-                  src="/user.jpg"
+                  src="/persons/user.jpg"
                   className="mx-auto object-cover rounded-full h-20 w-20 "
                 />
               </a>
@@ -60,7 +57,7 @@ const Contact = () => {
               <div className="text-3xl text-red-500 text-left leading-tight h-3">
                 “
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-100 text-center px-5">
+              <p className="text-gray-600 dark:text-gray-100 text-center px-5">
                 I really wish that Welthoid should have been in existence when I
                 was learning to start my investments. It is a great platform htmlFor
                 beginners
@@ -73,7 +70,7 @@ const Contact = () => {
               <p className="text-md text-red-500 font-bold text-center">
                 Tom Hardy
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-300 text-center">
+              <p className="text-sm text-gray-500 dark:text-gray-300 text-center">
                 @thom.hardy
               </p>
             </div>
@@ -93,7 +90,7 @@ const Contact = () => {
             <div className=" inline-flex rounded-md shadow">
               <button
                 type="button"
-                className="py-4 px-6  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                className="py-4 px-6  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center  font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
               >
                 Get started
               </button>
@@ -101,7 +98,7 @@ const Contact = () => {
             <div className="ml-3 inline-flex rounded-md shadow">
               <button
                 type="button"
-                className="py-4 px-6  bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                className="py-4 px-6  bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center  font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
               >
                 Share with friend
               </button>
