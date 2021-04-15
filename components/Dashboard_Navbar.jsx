@@ -57,7 +57,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div id="mobile-menu-r" className="navbar-menu hidden md:order-3 md:block w-full md:w-2/5 md:text-right">
-        <Link href="#">
+        <Link href="/global-news">
         <a
           className="block md:inline-block mt-4 md:mt-0 mr-10 text-gray-500 hover:text-gray-800"
         >
