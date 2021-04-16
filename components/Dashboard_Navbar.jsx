@@ -1,7 +1,12 @@
 import React from "react";
 import Link from 'next/link'
+import { GoogleLogout } from 'react-google-login';
+import cookie from 'js-cookie'
+import { useRouter } from 'next/router'
 
 const Navbar = () => {
+    
+    const router = useRouter()
 
     const responsiveMenu = (e) => {
         if (process.browser) {
@@ -10,7 +15,16 @@ const Navbar = () => {
           var menu = document.getElementById("mobile-menu-r");
           menu.classList.toggle("hidden");
         }
-      };
+  };
+  
+  const logout = () => {
+    cookie.remove('name');
+    cookie.remove('email');
+    cookie.remove('image');
+    cookie.remove('token');
+    cookie.remove('id');
+    router.push('/')
+  }
 
   return (
     <nav className="flex bg-white flex-wrap items-center justify-between px-8 shadow py-3">
@@ -71,13 +85,16 @@ const Navbar = () => {
           See Help
         </a>
         </Link>
-        <Link href="/">
-        <a
-          className="block md:inline-block mt-4 md:mt-0 text-white bg-red-600 font-semibold rounded-lg px-5 py-2 animation  duration-200 focus:ring-red-500 focus:ring-offset-red-200 hover:bg-red-700"
+        <GoogleLogout
+          clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
+          render={renderProps => (
+            <a onClick={renderProps.onClick} className="block md:inline-block mt-4 md:mt-0 cursor-pointer text-white bg-red-600 font-semibold rounded-lg px-5 py-2 animation  duration-200 focus:ring-red-500 focus:ring-offset-red-200 hover:bg-red-700">
+              Logout
+            </a>
+          )}
+          onLogoutSuccess={logout}
         >
-          Logout
-        </a>
-        </Link>
+        </GoogleLogout>
       </div>
     </nav>
   );
