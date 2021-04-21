@@ -2,62 +2,23 @@ import React, { useState, useEffect } from "react";
 import Head from 'next/head'
 import StockData from "../components/stockData";
 import Navbar from '../components/Dashboard_Navbar'
-
+import axios from 'axios'
 const Trade = () => {
-  const stocksUrl = "ws://stocks.mnet.website/";
-  const [stocks, setStocks] = useState({});
-  const [error, setError] = useState(false);
 
-  let connection;
+  const [gainers, setGainers] = useState([])
+  const [losers, setLosers] = useState([])
+  const [page, setPage] = useState(1)
+
+  const getTrades = async () => {
+    const most_gainers = await axios.get(`https://cloud.iexapis.com/stable/stock/market/list/gainers?token=${process.env.NEXT_PUBLIC_STOCK_API_KEY}`)
+    setGainers(most_gainers.data)
+    const most_losers = await axios.get(`https://cloud.iexapis.com/stable/stock/market/list/losers?token=${process.env.NEXT_PUBLIC_STOCK_API_KEY}`)
+    setLosers(most_losers.data)
+  }
 
   useEffect(() => {
-    connection = new WebSocket(stocksUrl);
-    connection.onmessage = saveNewStockValues;
-    connection.onclose = () => {
-      setError(true);
-    };
-    console.log(stocks);
-  }, []);
-
-  const saveNewStockValues = (event) => {
-    let up_values_count = 0;
-    let down_values_count = 0;
-
-    let result = JSON.parse(event.data);
-
-    // time stored in histories should be consisitent across stocks(better for graphs)
-    let current_time = Date.now();
-    let new_stocks = stocks;
-    result.map((stock) => {
-      // stock = ['name', 'value']
-      if (stocks[stock[0]]) {
-        new_stocks[stock[0]].current_value > parseInt(stock[1])
-          ? up_values_count++
-          : up_values_count++;
-      }
-
-      if (stocks[stock[0]]) {
-        new_stocks[stock[0]].current_value = parseInt(stock[1]);
-        new_stocks[stock[0]].history.push({
-          time: current_time,
-          value: parseInt(stock[1]),
-        });
-      } else {
-        new_stocks[stock[0]] = {
-          current_value: stock[1],
-          history: [{ time: Date.now(), value: parseInt(stock[1]) }],
-          is_selected: false,
-        };
-      }
-    });
-    setStocks({
-      ...new_stocks,
-      trend: newMarketTrend(up_values_count, down_values_count),
-    });
-  };
-
-  const newMarketTrend = (up_count, down_count) =>
-    up_count > down_count ? "up" : "down";
+    getTrades()
+   }, [])
 
   return (
       <>
@@ -66,7 +27,7 @@ const Trade = () => {
               <title>Welthoid - See Trades</title>
           </Head>
       <section className="container mx-auto px-4 sm:px-8 max-w-3xl">
-        <div className="py-8">
+        <div className="py-8 flex justify-center flex-col">
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
               <table className="min-w-full leading-normal">
@@ -82,32 +43,53 @@ const Trade = () => {
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                     >
-                      Price
+                      Price($)
                     </th>
                     <th
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                     >
-                      Updated at
+                      MarketCap
                     </th>
                     <th
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                     >
-                      status
+                      Status
+                    </th>
+                    <th scope="col"
+                      className="px-5 text-center py-3 bg-white  border-b border-gray-200 text-gray-800  text-sm uppercase font-normal"
+                    >
+                      Buy Stock
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {stocks &&
-                    Object.keys(stocks).map((stock, index) => {
-                      let current_stock = stocks[stock];
+                  {gainers.length!==0 && page === 1 &&
+                    gainers.map((stock, index) => {
 
                       return (
                         <StockData
                           key={index}
-                          stock={stock}
-                          stock_data={current_stock}
+                          symbol={stock.symbol}
+                          price={stock.latestPrice}
+                          marketCap={stock.marketCap}
+                          open={stock.isUSMarketOpen}
+                          change={stock.change}
+                        />
+                      );
+                    })}
+                  {losers.length!==0 && page === 2 &&
+                    losers.map((stock, index) => {
+
+                      return (
+                        <StockData
+                          key={index}
+                          symbol={stock.symbol}
+                          price={stock.latestPrice}
+                          marketCap={stock.marketCap}
+                          open={stock.isUSMarketOpen}
+                          change={stock.change}
                         />
                       );
                     })}
@@ -115,6 +97,9 @@ const Trade = () => {
               </table>
             </div>
           </div>
+        <button onClick={() => { page === 1 ? setPage(2) : setPage(1) }} className="py-4 px-6 mx-auto bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg max-w-xs">
+          {page === 1 ? "See Top Losers" : "See Top Gainers"}
+        </button>
         </div>
       </section>
     </>

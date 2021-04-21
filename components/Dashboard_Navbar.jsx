@@ -55,14 +55,14 @@ const Navbar = () => {
           Dashboard
         </a>
         </Link>
-        <Link href="#">
+        <Link href="/profile">
         <a
           className="block md:inline-block mt-4 md:mt-0 mr-10 text-gray-500 hover:text-gray-800"
         >
           Profile
         </a>
         </Link>
-        <Link href="#">
+        <Link href="/trade">
         <a
           className="block md:inline-block mt-4 md:mt-0 text-gray-500 hover:text-gray-800"
         >
