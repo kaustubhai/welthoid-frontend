@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from 'next/link'
 import GoogleLogin from 'react-google-login';
 import cookie from 'js-cookie'
+import axios from 'axios'
 import { useRouter } from 'next/router'
+import LoadingOverlay from 'react-loading-overlay';
+import setAuthToken from "../utils/setAuthToken";
 
 const Navbar = () => {
+
+  const [loading, setLoading] = useState(false)
+  useEffect(() => {
+    setLoading(false)
+  }, [])
 
   const router = useRouter()
 
@@ -13,14 +21,17 @@ const Navbar = () => {
       var menu = document.getElementById("mobile-menu");
       menu.classList.toggle("hidden");
     }
-  };
+  }
 
-  const responseGoogle = (response) => {
+  const responseGoogle = async response => {
+    setLoading(true)
     cookie.set('name', response.profileObj.name)
     cookie.set('email', response.profileObj.email)
     cookie.set('image', response.profileObj.image)
     cookie.set('token', response.accessToken)
-    cookie.set( 'id', response.googleId )
+    cookie.set('id', response.googleId)
+    setAuthToken(response.googleId)
+    await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/user/register`)
     router.push('/dashboard')
   }
 
@@ -31,7 +42,7 @@ const Navbar = () => {
   }
 
   return (
-    <div>
+    <LoadingOverlay active={loading} spinner>
       <nav className="bg-white dark:bg-gray-800 shadow">
         <div className="max-w-8xl mx-auto px-8">
           <div className="flex items-center justify-between h-16">
@@ -187,7 +198,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-    </div>
+    </LoadingOverlay>
   );
 };
 

@@ -10,10 +10,10 @@ const Trade = () => {
   const [page, setPage] = useState(1)
 
   const getTrades = async () => {
-    const most_gainers = await axios.get(`https://cloud.iexapis.com/stable/stock/market/list/gainers?token=${process.env.NEXT_PUBLIC_STOCK_API_KEY}`)
-    setGainers(most_gainers.data)
-    const most_losers = await axios.get(`https://cloud.iexapis.com/stable/stock/market/list/losers?token=${process.env.NEXT_PUBLIC_STOCK_API_KEY}`)
-    setLosers(most_losers.data)
+    // const most_gainers = await axios.get(`https://cloud.iexapis.com/stable/stock/market/list/gainers?token=${process.env.NEXT_PUBLIC_STOCK_API_KEY}`)
+    // setGainers(most_gainers.data)
+    // const most_losers = await axios.get(`https://cloud.iexapis.com/stable/stock/market/list/losers?token=${process.env.NEXT_PUBLIC_STOCK_API_KEY}`)
+    // setLosers(most_losers.data)
   }
 
   useEffect(() => {
