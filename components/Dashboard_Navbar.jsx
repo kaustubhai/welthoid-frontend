@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import { GoogleLogout } from "react-google-login";
-import cookie, { set } from "js-cookie";
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutUser } from '../actions/userActions' 
 import { useRouter } from "next/router";
 import LoadingOverlay from "react-loading-overlay";
 
 const Navbar = () => {
   const router = useRouter();
-  const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    setLoading(false)
-  }, [])
+  const { loading } = useSelector(state => state.user)
 
   const responsiveMenu = () => {
     if (process.browser) {
@@ -22,13 +19,10 @@ const Navbar = () => {
     }
   };
 
+  const dispatch = useDispatch()
+
   const logout = () => {
-    setLoading(true)
-    cookie.remove("name");
-    cookie.remove("email");
-    cookie.remove("image");
-    cookie.remove("token");
-    cookie.remove("id");
+    dispatch(logoutUser())
     router.push("/");
   };
 

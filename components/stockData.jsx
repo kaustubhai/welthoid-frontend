@@ -1,7 +1,14 @@
 import React from "react";
 import { FiTrendingUp, FiTrendingDown } from "react-icons/fi";
+import { useRouter } from "next/router";
 
 const StockData = ({ symbol, price, change, open, marketCap }) => {
+
+  const router = useRouter();
+  const onClick = () => {
+    router.push(`/trade/${symbol}`)
+  }
+
   return (
     <tr>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -35,7 +42,7 @@ const StockData = ({ symbol, price, change, open, marketCap }) => {
         </div>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <button className={`py-2 px-3 ${open ? "cursor-pointer" : "cursor-not-allowed"} bg-green-500 hover:bg-green-600 focus:ring-green-400 focus:ring-offset-green-100 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg `}>
+        <button onClick={onClick} className={`py-2 px-3 ${open ? "cursor-pointer" : "cursor-not-allowed"} bg-green-500 hover:bg-green-600 focus:ring-green-400 focus:ring-offset-green-100 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg `}>
           Buy Stock
         </button>
       </td>

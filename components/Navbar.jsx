@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Link from 'next/link'
 import GoogleLogin from 'react-google-login';
-import cookie from 'js-cookie'
-import axios from 'axios'
 import { useRouter } from 'next/router'
 import LoadingOverlay from 'react-loading-overlay';
-import setAuthToken from "../utils/setAuthToken";
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../actions/userActions'
 const Navbar = () => {
 
-  const [loading, setLoading] = useState(false)
-  useEffect(() => {
-    setLoading(false)
-  }, [])
-
+  const dispatch = useDispatch()
+  const { loading } = useSelector(state => state.user)
   const router = useRouter()
 
   const responsiveMenu = (e) => {
@@ -24,14 +19,7 @@ const Navbar = () => {
   }
 
   const responseGoogle = async response => {
-    setLoading(true)
-    cookie.set('name', response.profileObj.name)
-    cookie.set('email', response.profileObj.email)
-    cookie.set('image', response.profileObj.image)
-    cookie.set('token', response.accessToken)
-    cookie.set('id', response.googleId)
-    setAuthToken(response.googleId)
-    await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/user/register`)
+    dispatch(setUser(response))
     router.push('/dashboard')
   }
 
@@ -172,24 +160,28 @@ const Navbar = () => {
             <GoogleLogin
                     clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
                     render={renderProps => (
-                      <a className="ml-auto text-right">
-                      <button
-                        type="button"
-                        className="py-2 px-4 flex justify-center items-center  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base mt-5 md:mt-0 font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                      <a className="ml-auto text-right"
+                        onClick={() => {
+                          renderProps.onClick()
+                        }}
                       >
-                        <svg
-                          width="20"
-                          height="20"
-                          fill="currentColor"
-                          className="mr-2"
-                          viewBox="0 0 1792 1792"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <button
+                          type="button"
+                          className="py-2 px-4 flex justify-center items-center  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
                         >
-                          <path d="M896 786h725q12 67 12 128 0 217-91 387.5t-259.5 266.5-386.5 96q-157 0-299-60.5t-245-163.5-163.5-245-60.5-299 60.5-299 163.5-245 245-163.5 299-60.5q300 0 515 201l-209 201q-123-119-306-119-129 0-238.5 65t-173.5 176.5-64 243.5 64 243.5 173.5 176.5 238.5 65q87 0 160-24t120-60 82-82 51.5-87 22.5-78h-436v-264z"></path>
-                        </svg>
-                        Sign in with Google
-                      </button>
-                    </a>
+                          <svg
+                            width="20"
+                            height="20"
+                            fill="currentColor"
+                            className="mr-2"
+                            viewBox="0 0 1792 1792"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M896 786h725q12 67 12 128 0 217-91 387.5t-259.5 266.5-386.5 96q-157 0-299-60.5t-245-163.5-163.5-245-60.5-299 60.5-299 163.5-245 245-163.5 299-60.5q300 0 515 201l-209 201q-123-119-306-119-129 0-238.5 65t-173.5 176.5-64 243.5 64 243.5 173.5 176.5 238.5 65q87 0 160-24t120-60 82-82 51.5-87 22.5-78h-436v-264z"></path>
+                          </svg>
+                          Sign in with Google
+                        </button>
+                      </a>
                     )}
                     isSignedIn={true}
                     onSuccess={responseGoogle}

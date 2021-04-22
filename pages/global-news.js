@@ -12,8 +12,7 @@ const GlobalNews = () => {
     const res = await axios.get(
       `https://newsapi.org/v2/everything?q=market&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`
     );
-    setNews(res.data.articles.slice(0, 12));
-    console.log(news);
+    setNews(res?.data.articles?.slice(0, 12));
     setLoading(false);
   };
   useEffect(() => {

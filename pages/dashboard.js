@@ -2,54 +2,19 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Dashboard_Navbar";
 import Link from "next/link";
 import Head from "next/head";
+import { useSelector, useDispatch } from 'react-redux'
+import { setUser } from '../actions/userActions'
 import toastifier from 'toastifier'
 import 'toastifier/dist/toastifier.min.css'
+import cookie from "js-cookie";
 
 const Dashboard = () => {
-  const stocksUrl = "ws://stocks.mnet.website/";
-  const [stocks, setStocks] = useState({});
-  const [trend, setTrend] = useState();
-  const [error, setError] = useState(false);
-
-  let connection;
-
+  const dispatch = useDispatch()
   useEffect(() => {
-    connection = new WebSocket(stocksUrl);
-    connection.onmessage = saveNewStockValues;
-    connection.onclose = () => {
-      setError(true);
-    };
+      dispatch(setUser())
   }, []);
 
-  const saveNewStockValues = (event) => {
-    let result = JSON.parse(event.data);
-    let [up_values_count, down_values_count] = [0, 0];
-
-    let current_time = Date.now();
-    let new_stocks = stocks
-    result.map((stock) =>
-    {
-      // stock = ['name', 'value']
-      if(stocks[stock[0]])
-      {
-        new_stocks[stock[0]].current_value > Number(stock[1]) ? up_values_count++ : down_values_count++;
-
-        new_stocks[stock[0]].current_value = Number(stock[1])
-        new_stocks[stock[0]].history.push({time: current_time, value: Number(stock[1])})
-      }
-      else
-      {
-        new_stocks[stock[0]] = { current_value: stock[1], history: [{time: Date.now(), value: Number(stock[1])}], is_selected: false }
-      }
-    });
-      setStocks({ stocks: new_stocks, market_trend: newMarketTrend(up_values_count, down_values_count)})
-  }
-
-  // it's about the values that just came in, and not all the stocks
-  const newMarketTrend = (up_count, down_count) => {
-    if(up_count === down_count) return undefined;
-    return up_count > down_count ? 'up' : 'down'
-  }
+  const { coin } = useSelector(state => state.user)
 
   return (
     <>
@@ -80,31 +45,11 @@ const Dashboard = () => {
           alt="Dashboard SVG"
         />
       </section>
-
-      {trend === "up" ? (
         <section id="going-up" className="bg-gray-100 dark:bg-gray-800lg:px-16">
           <div className="w-full flex flex-col text-center lg:text-left lg:flex-row items-center justify-center lg:justify-around  mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
             <h2 className="text-3xl font-extrabold text-black dark:text-white sm:text-4xl">
-              <span className="block">Current market Trend is</span>
-              <span className="block text-green-500">Going upwards</span>
-            </h2>
-            <div className="lg:mt-0 mt-10 lg:flex-shrink-0">
-              <div className=" inline-flex rounded-md shadow">
-                <Link href="/trade">
-                  <a className="py-4 px-6  bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                    Trade Now
-                  </a>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-      ) : (
-        <section id="going-up" className="bg-gray-100 dark:bg-gray-800lg:px-16">
-          <div className="w-full flex flex-col text-center lg:text-left lg:flex-row items-center justify-center lg:justify-around  mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
-            <h2 className="text-3xl font-extrabold text-black dark:text-white sm:text-4xl">
-              <span className="block">Current market Trend is</span>
-              <span className="block text-red-500">Going downwards</span>
+              <span className="block">You currently have</span>
+            <span className="block text-red-500">${coin} Mose Bucks</span>
             </h2>
             <div className="lg:mt-0 mt-10 lg:flex-shrink-0">
               <div className=" inline-flex rounded-md shadow">
@@ -117,7 +62,6 @@ const Dashboard = () => {
             </div>
           </div>
         </section>
-      )}
       <section className="w-full flex items-center mt-40 mb-20 flex-col">
         <h3 className="font-body font-bold text-4xl text-center mb-10">Learn from the masters</h3>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
