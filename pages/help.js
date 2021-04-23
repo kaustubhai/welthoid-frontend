@@ -5,6 +5,7 @@ import { ImNewspaper } from "react-icons/im";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import { RiDashboard2Line } from "react-icons/ri";
 import Head from "next/head";
+import Footer from "../components/Dashboard_Footer";
 const Help = () => {
   return (
     <>
@@ -186,6 +187,7 @@ const Help = () => {
           </li>
         </ul>
       </section>
+      <Footer/>
     </>
   );
 };

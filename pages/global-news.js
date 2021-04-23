@@ -4,6 +4,7 @@ import Navbar from "../components/Dashboard_Navbar";
 import { SpinnerInfinity } from "spinners-react";
 import dateFormat from "dateformat";
 import Head from "next/head";
+import Footer from "../components/Dashboard_Footer";
 
 const GlobalNews = () => {
   const [news, setNews] = useState([]);
@@ -37,7 +38,7 @@ const GlobalNews = () => {
             </p>
           </div>
         </div>
-        {loading || news.length === 0 ? (
+        {loading || !news || news.length === 0 ? (
           <SpinnerInfinity
             className="mx-auto my-10"
             size={65}
@@ -111,6 +112,7 @@ const GlobalNews = () => {
           className="lg:w-1/2"
         />
       </section>
+      <Footer/>
     </>
   );
 };

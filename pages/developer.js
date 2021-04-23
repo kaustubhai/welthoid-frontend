@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { AiFillLinkedin, AiFillInstagram, AiFillGithub } from "react-icons/ai";
+import { AiFillLinkedin, AiFillInstagram, AiFillGithub, AiOutlineMedium } from "react-icons/ai";
 import Head from "next/head";
 
 const Developer = () => {
@@ -42,6 +42,9 @@ const Developer = () => {
           </a>
           <a href="https://linkedin.com/in/kaustubhai" target="_blank">
             <AiFillLinkedin className="text-4xl" />
+          </a>
+          <a href="https://kaustubhai.medium.com/" target="_blank">
+            <AiOutlineMedium className="text-4xl" />
           </a>
         </div>
       </section>
