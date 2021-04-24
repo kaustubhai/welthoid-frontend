@@ -3,25 +3,28 @@ import { LOGOUT, SET_USER, USER_LOADING } from './types'
 import setAuthToken from '../utils/setAuthToken'
 import cookie from 'js-cookie'
 
-const storedUser = {
-    profileObj: {
-        name: cookie.get('name'),
-        email: cookie.get('email'),
-        image: cookie.get('image'),
-    },
-    accessToken: cookie.get('token'),
-    googleId: cookie.get('id')
-}
-
-export const setUser = (response = storedUser) => async dispatch => {
+export const setUser = (response) => async dispatch => {
     dispatch({type: USER_LOADING})
-    console.log(response)
     cookie.set('name', response.profileObj.name)
     cookie.set('email', response.profileObj.email)
-    cookie.set('image', response.profileObj.image)
+    cookie.set('image', response.profileObj.imageUrl)
     cookie.set('token', response.accessToken)
     cookie.set('id', response.googleId)
-    setAuthToken(response.googleId)
+
+    const id = cookie.get('id')
+    setAuthToken(response.googleId || id)
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    const userInfo = {
+        user: response.googleId
+    }
+
+    console.log(response)
+
     const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/user/register`)
     const resUser = {
             name: response?.profileObj?.name,

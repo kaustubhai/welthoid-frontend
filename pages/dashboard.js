@@ -3,18 +3,12 @@ import Navbar from "../components/Dashboard_Navbar";
 import Link from "next/link";
 import Head from "next/head";
 import { useSelector, useDispatch } from 'react-redux'
-import { setUser } from '../actions/userActions'
 import toastifier from 'toastifier'
 import 'toastifier/dist/toastifier.min.css'
-import cookie from "js-cookie";
 import Footer from "../components/Dashboard_Footer";
 
 const Dashboard = () => {
   const dispatch = useDispatch()
-  // useEffect(() => {
-  //   if(cookie.get('id'))
-  //     dispatch(setUser())
-  // }, []);
 
   const { coin } = useSelector(state => state.user)
 
@@ -51,7 +45,7 @@ const Dashboard = () => {
           <div className="w-full flex flex-col text-center lg:text-left lg:flex-row items-center justify-center lg:justify-around  mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
             <h2 className="text-3xl font-extrabold text-black dark:text-white sm:text-4xl">
               <span className="block">You currently have</span>
-            <span className="block text-red-500">${coin} Mose Bucks</span>
+            <span className="block text-red-500">${coin.toFixed(0)} Mose Bucks</span>
             </h2>
             <div className="lg:mt-0 mt-10 lg:flex-shrink-0">
               <div className=" inline-flex rounded-md shadow">

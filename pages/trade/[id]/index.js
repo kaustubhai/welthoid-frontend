@@ -24,6 +24,7 @@ const index = () => {
   const onCloseModal = () => setOpen(false);
   const getData = async () => {
     if (id) {
+      delete axios.defaults.headers.common["x-auth-token"];
       const res = await axios.get(
         `https://cloud.iexapis.com/stable/stock/${id}/quote?token=${process.env.NEXT_PUBLIC_STOCK_API_KEY}`
       );
@@ -35,7 +36,8 @@ const index = () => {
   };
 
   const fetchNews = async (comp) => {
-    const res = await axios.get(
+      delete axios.defaults.headers.common["x-auth-token"];
+      const res = await axios.get(
       `https://newsapi.org/v2/everything?q=${comp.split(' ')[0]}&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`
     );
     setNews(res?.data.articles?.slice(0, 3));

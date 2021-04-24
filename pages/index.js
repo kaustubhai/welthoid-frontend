@@ -22,7 +22,7 @@ export default function Home() {
           <h3 className="md:text-5xl lg:text-7xl font-semibold text-3xl font-body text-center lg:text-left lg:ml-20 ">
             Practice to start investing money here
           </h3>
-          <p className=" text-center lg:text-left lg:ml-20 my-5 lg:mt-10 lg:mt-3 text-xl w-3/4">
+          <p className=" text-center lg:text-left lg:ml-20 my-5 lg:mt-10 text-xl w-3/4">
             Gets your hand dirty with real stock market but fake money, called the "Mose-Buck".
           </p>
           <button

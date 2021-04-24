@@ -1,4 +1,5 @@
 import axios from "axios";
+import toastifier from 'toastifier'
 import {
   BUY_TRADE,
   SELL_TRADE,
@@ -28,6 +29,7 @@ export const buyStock = (stockName, buyPrice, quantity) => async (dispatch) => {
       type: BUY_TRADE,
       payload: res.data,
     });
+    toastifier("Stock added in your portfolio", { showIcon: true })
   } catch (error) {
     console.error(error);
     dispatch({ type: SET_ERROR });

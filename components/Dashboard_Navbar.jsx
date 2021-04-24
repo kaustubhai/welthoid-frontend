@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { GoogleLogout } from "react-google-login";
 import { useDispatch, useSelector } from 'react-redux'
-import { logoutUser } from '../actions/userActions' 
+import { setUser, logoutUser } from '../actions/userActions' 
 import { useRouter } from "next/router";
 import LoadingOverlay from "react-loading-overlay";
+import cookie from "js-cookie";
 
 const Navbar = () => {
   const router = useRouter();
@@ -18,6 +19,25 @@ const Navbar = () => {
       menu.classList.toggle("hidden");
     }
   };
+
+  const loadUser = () => {
+    if(cookie.get('token') !== "undefined"){
+      const storedUser = {
+        profileObj: {
+            name: cookie.get('name'),
+            email: cookie.get('email'),
+            imageUrl: cookie.get('image'),
+        },
+        accessToken: cookie.get('token'),
+        googleId: cookie.get('id')
+    }
+      dispatch(setUser(storedUser))
+    }
+  }
+
+  useEffect(() => {
+    loadUser()
+  }, [])
 
   const dispatch = useDispatch()
 

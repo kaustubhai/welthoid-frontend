@@ -10,6 +10,7 @@ const GlobalNews = () => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const fetchNews = async () => {
+    delete axios.defaults.headers.common["x-auth-token"];
     const res = await axios.get(
       `https://newsapi.org/v2/everything?q=market&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`
     );
