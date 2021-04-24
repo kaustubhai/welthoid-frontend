@@ -15,6 +15,7 @@ const storedUser = {
 
 export const setUser = (response = storedUser) => async dispatch => {
     dispatch({type: USER_LOADING})
+    console.log(response)
     cookie.set('name', response.profileObj.name)
     cookie.set('email', response.profileObj.email)
     cookie.set('image', response.profileObj.image)

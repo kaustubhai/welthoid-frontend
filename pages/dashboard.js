@@ -11,9 +11,10 @@ import Footer from "../components/Dashboard_Footer";
 
 const Dashboard = () => {
   const dispatch = useDispatch()
-  useEffect(() => {
-      dispatch(setUser())
-  }, []);
+  // useEffect(() => {
+  //   if(cookie.get('id'))
+  //     dispatch(setUser())
+  // }, []);
 
   const { coin } = useSelector(state => state.user)
 

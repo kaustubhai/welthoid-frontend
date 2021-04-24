@@ -20,13 +20,14 @@
     "react-icons": "^4.2.0",
     "react-loading-overlay": "^1.0.1",
     "react-redux": "^7.2.3",
+    "react-responsive-modal": "^6.0.1",
     "react-timeago": "^5.2.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
     "spinners-react": "^1.0.4",
     "sweetalert2": "^10.16.2",
-    "toastifier": "^1.0.6"
+    "toastifier": "^1.0.8"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",

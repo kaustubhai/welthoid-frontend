@@ -5,7 +5,11 @@ import Navbar from "../../../components/Dashboard_Navbar";
 import { SpinnerInfinity } from "spinners-react";
 import dateFormat from "dateformat";
 import { useRouter } from "next/router";
-import Footer from "../../../components/Dashboard_Footer";
+import Footer from "../../../components/Dashboard_Footer"
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
+import TradeModal from '../../../components/BuyModal'
+
 // import stock from '../../../components/quote'
 
 const index = () => {
@@ -15,6 +19,9 @@ const index = () => {
   const [news, setNews] = useState([]);
   const [newsLoading, setNewsLoading] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
   const getData = async () => {
     if (id) {
       const res = await axios.get(
@@ -42,6 +49,9 @@ const index = () => {
   return (
     <>
       <Navbar />
+      <Modal open={open} onClose={onCloseModal} center classNames={{modal: "rounded-lg shadow-lg min-w-3xl"}}>
+        <TradeModal  onCloseModal={onCloseModal} symbol={stock.symbol} name={stock.companyName} price={stock.latestPrice}/>
+      </Modal> 
       <Head>
         <title>{`Welthoid - See ${id || "stock"}`}</title>
       </Head>
@@ -61,7 +71,7 @@ const index = () => {
               <h1 className="text-4xl text-red-500 font-bold font-body">
                 {stock.symbol}
               </h1>
-              <h2 className="text-2xl">{stock.companyName}</h2>
+              <h2 className="text-2xl max-w-lg">{stock.companyName}</h2>
             </div>
             <div className="">
               <h1
@@ -121,7 +131,7 @@ const index = () => {
             </div>
           </section>
           <section className="flex flex-col items-center justify-center mx-5 my-10 lg:flex-row">
-            <button className="bg-green-600 hover:bg-green-700 transition duration-200 text-base lg:text-lg text-white font-semibold rounded-lg px-8 py-4">
+            <button onClick={onOpenModal} className="bg-green-600 hover:bg-green-700 transition duration-200 text-base lg:text-lg text-white font-semibold rounded-lg px-8 py-4">
               Buy {stock.symbol}
             </button>
                       </section>
@@ -130,7 +140,7 @@ const index = () => {
           <section className="w-full bg-white mt-3 md:px-16 px-2 lg:px-28 py-12">
             <div className="lg:px-40 px-16 flex flex-col justify-center items-center">
               <h1 className="font-body font-semibold my-10 text-2xl">
-              Latest News about {stock.companyName}
+              Latest News about {stock.companyName?.split('-')[0]}
             </h1>
             </div>
             {newsLoading || news.length === 0 ? (
