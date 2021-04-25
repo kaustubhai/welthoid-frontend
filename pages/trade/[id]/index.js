@@ -4,6 +4,8 @@ import axios from "axios";
 import Navbar from "../../../components/Dashboard_Navbar";
 import { SpinnerInfinity } from "spinners-react";
 import dateFormat from "dateformat";
+import { useSelector, useDispatcher, useDispatch } from 'react-redux'
+import { getCurrent } from '../../../actions/userActions'
 import { useRouter } from "next/router";
 import Footer from "../../../components/Dashboard_Footer"
 import 'react-responsive-modal/styles.css';
@@ -15,6 +17,8 @@ import TradeModal from '../../../components/BuyModal'
 const index = () => {
   const router = useRouter();
   const { id } = router.query;
+  const current = useSelector(state => state.user.current)
+  const [sell, setCanSell] = useState(false);
   const [stock, setStock] = useState({});
   const [news, setNews] = useState([]);
   const [newsLoading, setNewsLoading] = useState(true);
@@ -47,7 +51,18 @@ const index = () => {
   useEffect(() => {
     getData();
     setLoading(true);
+    dispatch(getCurrent())
   }, [id]);
+  const dispatch = useDispatch()
+  const getUserData = () => {
+    current?.forEach((trade) => {
+      if(trade.stockName === id)
+        setCanSell(true)
+    })
+  }
+  useEffect(() => {
+    getUserData()
+  }, [current])
   return (
     <>
       <Navbar />
@@ -133,8 +148,11 @@ const index = () => {
             </div>
           </section>
           <section className="flex flex-col items-center justify-center mx-5 my-10 lg:flex-row">
-            <button onClick={onOpenModal} className="bg-green-600 hover:bg-green-700 transition duration-200 text-base lg:text-lg text-white font-semibold rounded-lg px-8 py-4">
+            <button onClick={onOpenModal} className="bg-green-600 mx-3 hover:bg-green-700 transition duration-200 text-base lg:text-lg text-white font-semibold rounded-lg px-8 py-4">
               Buy {stock.symbol}
+            </button>
+            <button disabled={!sell} onClick={onOpenModal} className={`bg-red-600 mx-3 hover:bg-red-700 transition duration-200 text-base lg:text-lg text-white font-semibold rounded-lg px-8 py-4 ${sell ? "" : "cursor-not-allowed"}`}>
+              Sell {stock.symbol}
             </button>
                       </section>
                       

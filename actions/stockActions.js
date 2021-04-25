@@ -4,6 +4,8 @@ import {
   BUY_TRADE,
   SELL_TRADE,
   GET_TRADE,
+  CURRENT_HOLDING,
+  PAST_HOLDING,
   CURRENT_TRADE,
   SET_ERROR,
 } from "./types";
@@ -31,9 +33,8 @@ export const buyStock = (stockName, buyPrice, quantity) => async (dispatch) => {
     });
     toastifier("Stock added in your portfolio", { showIcon: true })
   } catch (error) {
-    console.error(error);
-    dispatch({ type: SET_ERROR });
+      console.error(error);
+      dispatch({ type: SET_ERROR });
   }
 };
-
 

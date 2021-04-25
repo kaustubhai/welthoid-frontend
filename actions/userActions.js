@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOGOUT, SET_USER, USER_LOADING } from './types'
+import { LOGOUT, SET_USER, SET_ERROR, USER_LOADING, CURRENT_HOLDING, PAST_HOLDING } from './types'
 import setAuthToken from '../utils/setAuthToken'
 import cookie from 'js-cookie'
 
@@ -40,6 +40,36 @@ export const setUser = (response) => async dispatch => {
             coin: data.coin
         } 
     })
+}
+
+export const getCurrent = () => async dispatch => {
+  try {
+    const user = cookie.get('id')
+    setAuthToken(user)
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/user/current`)
+    dispatch({
+      type: CURRENT_HOLDING,
+      payload: res.data
+    })
+  } catch (error) {
+      console.error(error);
+      dispatch({ type: SET_ERROR });
+  }
+}
+
+export const getPast = () => async dispatch => {
+  try {
+    const user = cookie.get('id')
+    setAuthToken(user)
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/user/past`)
+    dispatch({
+      type: PAST_HOLDING,
+      payload: res.data
+    })
+  } catch (error) {
+      console.error(error);
+      dispatch({ type: SET_ERROR });
+  }
 }
 
 export const logoutUser = () => async dispatch => {

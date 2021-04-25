@@ -3,8 +3,6 @@ import { BUY_TRADE, SELL_TRADE, GET_TRADE, CURRENT_TRADE, SET_ERROR } from '../a
 const initialState = {
     trade: {},
     error: "",
-    current: [],
-    past: []
 }
 
 export default (state = initialState, actions) => {
@@ -14,12 +12,17 @@ export default (state = initialState, actions) => {
                 ...state,
                 trade: actions.payload
             }
-            case SET_ERROR:
-                return {
-                    ...state,
-                    error: actions.payload
-                }
-            default:
-                return state
+        case SET_ERROR:
+            return {
+                ...state,
+                error: actions.payload
+            }
+        case SET_ERROR:
+            return {
+                ...state,
+                error: actions.payload
+            }
+        default:
+            return state
     }           
 }
