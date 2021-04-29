@@ -6,7 +6,7 @@ import { getPast, getCurrent } from '../actions/userActions'
 import Footer from "../components/Dashboard_Footer";
 import Navbar from "../components/Dashboard_Navbar";
 import cookie from "js-cookie";
-import ProfileData from "../components/profileData";
+import ProfileData from "../components/ProfileData";
 const Profile = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
@@ -140,7 +140,7 @@ const Profile = () => {
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                     >
-                      Transaction
+                      Total Exchange
                     </th>
                     <th
                       scope="col"
@@ -163,10 +163,16 @@ const Profile = () => {
 											section === "past" && past?.map((trade) => (
 												<ProfileData
 													symbol={trade.stockName}
-													buy={trade.buy}
+													buy={trade.sell}
 												/>
 											))
 									}
+                  {
+                    section === "current" && !current && (<div className="flex items-center justify-center w-full"><h1 className="text-red-500 text-center py-5 w-full mx-auto font-body font-bold">No Current Stock</h1></div>)
+                  }
+                  {
+                    section === "past" && !past && <h1 className="text-red-500 text-center py-5 w-full mx-auto font-body font-bold">No Past Stock</h1>
+                  }
                 </tbody>
               </table>
             </div>

@@ -15,7 +15,7 @@ const ProfileData = ({ symbol, buy}) => {
     let trans = 0
     buy?.forEach(trade => {
         pos += parseFloat(trade.quantity)
-        trans += parseFloat(trade.transaction)
+        trans += parseFloat(trade.quantity * trade.price)
     });
     console.log({pos, trans});
     console.log(buy);
@@ -43,7 +43,7 @@ const ProfileData = ({ symbol, buy}) => {
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
       <p className="text-gray-900 whitespace-no-wrap">
-        {transaction}
+        {transaction.toFixed(2)}
         </p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">

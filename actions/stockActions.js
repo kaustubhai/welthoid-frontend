@@ -38,3 +38,29 @@ export const buyStock = (stockName, buyPrice, quantity) => async (dispatch) => {
   }
 };
 
+export const sellStock = (stockName, buyPrice, sellPrice, quantity) => async (dispatch) => {
+  try {
+    const user = cookie.get("id");
+    setAuthToken(user);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const data = { stockName, sellPrice, buyPrice, quantity };
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/trade/sell`,
+      data,
+      config
+    );
+    dispatch({
+      type: SELL_TRADE,
+      payload: res.data,
+    });
+    toastifier("Stock removed from your portfolio", { showIcon: true })
+  } catch (error) {
+      console.error(error);
+      dispatch({ type: SET_ERROR });
+  }
+};
+

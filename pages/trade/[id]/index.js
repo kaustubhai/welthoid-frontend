@@ -4,13 +4,14 @@ import axios from "axios";
 import Navbar from "../../../components/Dashboard_Navbar";
 import { SpinnerInfinity } from "spinners-react";
 import dateFormat from "dateformat";
-import { useSelector, useDispatcher, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { getCurrent } from '../../../actions/userActions'
 import { useRouter } from "next/router";
 import Footer from "../../../components/Dashboard_Footer"
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
-import TradeModal from '../../../components/BuyModal'
+import BuyModal from '../../../components/BuyModal'
+import SellModal from '../../../components/SellModal'
 
 // import stock from '../../../components/quote'
 
@@ -24,8 +25,11 @@ const index = () => {
   const [newsLoading, setNewsLoading] = useState(true);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
   const onOpenModal = () => setOpen(true);
+  const onOpenModal2 = () => setOpen2(true);
   const onCloseModal = () => setOpen(false);
+  const onCloseModal2 = () => setOpen2(false);
   const getData = async () => {
     if (id) {
       delete axios.defaults.headers.common["x-auth-token"];
@@ -33,7 +37,6 @@ const index = () => {
         `https://cloud.iexapis.com/stable/stock/${id}/quote?token=${process.env.NEXT_PUBLIC_STOCK_API_KEY}`
       );
       setStock(res.data);
-      console.log(res.data);
       setLoading(false);
       fetchNews(res.data.companyName);
       }
@@ -67,7 +70,10 @@ const index = () => {
     <>
       <Navbar />
       <Modal open={open} onClose={onCloseModal} center classNames={{modal: "rounded-lg shadow-lg min-w-3xl"}}>
-        <TradeModal  onCloseModal={onCloseModal} symbol={stock.symbol} name={stock.companyName} price={stock.latestPrice}/>
+        <BuyModal  onCloseModal={onCloseModal} symbol={stock.symbol} name={stock.companyName} price={stock.latestPrice}/>
+      </Modal> 
+      <Modal open={open2} onClose={onCloseModal2} center classNames={{modal: "rounded-lg shadow-lg min-w-3xl"}}>
+        <SellModal onCloseModal={onCloseModal2} buy={current} symbol={stock.symbol} name={stock.companyName} price={stock.latestPrice}/>
       </Modal> 
       <Head>
         <title>{`Welthoid - See ${id || "stock"}`}</title>
@@ -151,7 +157,7 @@ const index = () => {
             <button onClick={onOpenModal} className="bg-green-600 mx-3 hover:bg-green-700 transition duration-200 text-base lg:text-lg text-white font-semibold rounded-lg px-8 py-4">
               Buy {stock.symbol}
             </button>
-            <button disabled={!sell} onClick={onOpenModal} className={`bg-red-600 mx-3 hover:bg-red-700 transition duration-200 text-base lg:text-lg text-white font-semibold rounded-lg px-8 py-4 ${sell ? "" : "cursor-not-allowed"}`}>
+            <button disabled={!sell} onClick={onOpenModal2} className={`bg-red-600 mx-3 hover:bg-red-700 transition duration-200 text-base lg:text-lg text-white font-semibold rounded-lg px-8 py-4 ${sell ? "" : "cursor-not-allowed"}`}>
               Sell {stock.symbol}
             </button>
                       </section>

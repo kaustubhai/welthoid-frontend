@@ -31,7 +31,7 @@ const TradeModal = ({symbol, price, onCloseModal}) => {
             <p className="font-semibold text-red-500 font-body text-xl">Stock</p><p className="text-xl font-body"> {symbol}</p>
         </div>
         <div className="stock flex w-full justify-around border-b-2 border-gray-300 py-4">
-            <p className="font-semibold text-red-500 font-body text-xl">Price</p><p className="text-xl font-body"> ${price}</p>
+            <p className="font-semibold text-red-500 font-body text-xl">Buy Price</p><p className="text-xl font-body"> ${price}</p>
         </div>
         <div className="stock flex w-full justify-around border-b-2 border-gray-300 py-4">
             <p className="font-semibold text-red-500 font-body text-xl">Transaction</p><p className="text-xl font-body"> ${(price*quantity).toFixed(2) || 0}</p>
