@@ -5,6 +5,7 @@ import { SpinnerInfinity } from "spinners-react";
 import dateFormat from "dateformat";
 import Head from "next/head";
 import Footer from "../components/Dashboard_Footer";
+import withAuth from '../components/authentication'
 
 const GlobalNews = () => {
   const [news, setNews] = useState([]);
@@ -118,4 +119,4 @@ const GlobalNews = () => {
   );
 };
 
-export default GlobalNews;
+export default withAuth(GlobalNews);

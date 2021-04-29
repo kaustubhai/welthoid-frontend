@@ -3,6 +3,8 @@ import Link from 'next/link'
 import GoogleLogin from 'react-google-login';
 import { useRouter } from 'next/router'
 import LoadingOverlay from 'react-loading-overlay';
+import toastifier from 'toastifier'
+import 'toastifier/dist/toastifier.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../actions/userActions'
 const Navbar = () => {
@@ -21,9 +23,11 @@ const Navbar = () => {
   const responseGoogle = async response => {
     dispatch(setUser(response))
     router.push('/dashboard')
+    toastifier("Login Successful", { showIcon: true, aniimation: 'flip' })
   }
 
   const loginError = (response) => {
+    toastifier("Aww Snap! Try again later", { type: 'error', showIcon: true })
     console.log({
       loginError: response
     })

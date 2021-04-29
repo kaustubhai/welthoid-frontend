@@ -14,7 +14,6 @@ const TradeModal = ({symbol, price, onCloseModal}) => {
         }
         else{
             dispatch(buyStock(symbol, parseFloat(price), parseInt(quantity)))
-            toastifier("Transaction Successfull", { showIcon: true, animation: 'flip' })
         }
         onCloseModal()
     }

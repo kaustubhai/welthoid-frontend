@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Navbar from "../components/Dashboard_Navbar";
 import Link from "next/link";
 import Head from "next/head";
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import toastifier from 'toastifier'
 import 'toastifier/dist/toastifier.min.css'
 import Footer from "../components/Dashboard_Footer";
+import withAuth from '../components/authentication'
 
 const Dashboard = () => {
-  const dispatch = useDispatch()
 
   const { coin } = useSelector(state => state.user)
 
@@ -18,8 +18,8 @@ const Dashboard = () => {
         <title>Welthoid- Dashboard</title>
       </Head>
       <Navbar page="dashboard" />
-      <section className="w-full flex justify-center text-center lg:text-left lg:justify-between items-center flex-col lg:flex-row p-8 lg:p-28">
-        <div className="flex flex-col lg:block justify-center">
+      <section className="w-full flex justify-center text-center lg:text-left lg:justify-around items-center flex-col lg:flex-row-reverse p-8 lg:mx-auto py-28">
+        <div className="flex flex-col mx-auto lg:block justify-center">
           <h2 className="font-body font-semibold text-3xl lg:text-7xl max-w-2xl">
             Congratulations on taking one step closer
           </h2>
@@ -71,4 +71,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default withAuth(Dashboard);

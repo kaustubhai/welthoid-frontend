@@ -6,6 +6,7 @@ import { FaRegMoneyBillAlt } from "react-icons/fa";
 import { RiDashboard2Line } from "react-icons/ri";
 import Head from "next/head";
 import Footer from "../components/Dashboard_Footer";
+import withAuth from "../components/authentication";
 const Help = () => {
   return (
     <>
@@ -14,7 +15,7 @@ const Help = () => {
         <title>Help Welthoid</title>
       </Head>
       <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto flex flex-wrap">
+        <div className="container px-5 pt-24 pb-8 mx-auto flex flex-wrap">
           <div className="flex flex-wrap w-full">
             <div className="lg:w-2/5 md:w-1/2 md:pr-10 md:py-6">
               <div className="flex relative pb-12">
@@ -192,4 +193,4 @@ const Help = () => {
   );
 };
 
-export default Help;
+export default withAuth(Help);

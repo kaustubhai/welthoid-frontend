@@ -12,6 +12,7 @@ import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import BuyModal from '../../../components/BuyModal'
 import SellModal from '../../../components/SellModal'
+import withAuth from "../../../components/authentication";
 
 // import stock from '../../../components/quote'
 
@@ -102,14 +103,14 @@ const index = () => {
                   stock.change > 0 ? "text-green-500" : "text-red-500"
                 }`}
               >
-                {stock.latestPrice}
+                ${stock.latestPrice}
               </h1>
               <h2
                 className={`text-2xl text-center ${
                   stock.change > 0 ? "text-green-500" : "text-red-500"
                 }`}
               >
-                {stock.change > 0 ? `+${stock.change}%` : `-${stock.change}%`}
+                {stock.change > 0 ? `+${stock.change}%` : `-${stock.change || " -"}%`}
               </h2>
             </div>
           </section>
@@ -119,17 +120,17 @@ const index = () => {
               Key Statistics
             </h1>
             <div className="grid grid-cols-1 lg:grid-cols-3 w-full gap-5">
-              <div className="row flex justify-between shadow px-16 py-8 w-full items-center">
+              <div className="row flex justify-between shadow px-4 lg:px-16 py-8 w-full items-center">
                 <span className="font-bold text-red-500 text-xl">Open:</span>
-                <span className="text-xl">{stock.iexOpen}</span>
+                <span className="text-xl">${stock.iexOpen || " ---"}</span>
               </div>
               <div className="row flex justify-between shadow px-16 py-8 items-center">
                 <span className="font-bold text-red-500 text-xl">Close:</span>
-                <span className="text-xl">{stock.iexClose}</span>
+                <span className="text-xl">${stock.iexClose || " ---"}</span>
               </div>
               <div className="row flex justify-between shadow px-16 py-8 items-center">
                 <span className="font-bold text-red-500 text-xl">Volume:</span>
-                <span className=" text-xl">{stock.volume || "---"}</span>
+                <span className=" text-xl">{stock.volume || " ---"}</span>
               </div>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 w-full gap-5">
@@ -137,19 +138,19 @@ const index = () => {
                 <span className="font-bold text-red-500 text-xl">
                   52 Week High:
                 </span>
-                <span className="text-xl">{stock.week52High}</span>
+                <span className="text-xl">${stock.week52High || " ---"}</span>
               </div>
               <div className="row flex justify-between shadow px-16 py-8 items-center">
                 <span className="font-bold text-red-500 text-xl">
                   52 Week Low:
                 </span>
-                <span className="text-xl">{stock.week52Low}</span>
+                <span className="text-xl">${stock.week52Low || " ---"}</span>
               </div>
               <div className="row flex justify-between shadow px-16 py-8 items-center">
                 <span className="font-bold text-red-500 text-xl">
                   Market Cap:
                 </span>
-                <span className=" text-xl">{stock.marketCap}</span>
+                <span className=" text-xl">{stock.marketCap || " ---"}</span>
               </div>
             </div>
           </section>
@@ -231,4 +232,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default withAuth(index);

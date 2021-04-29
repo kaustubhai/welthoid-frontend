@@ -1,20 +1,17 @@
 import axios from "axios";
 import toastifier from 'toastifier'
+import 'toastifier/dist/toastifier.min.css';
 import {
   BUY_TRADE,
   SELL_TRADE,
-  GET_TRADE,
-  CURRENT_HOLDING,
-  PAST_HOLDING,
-  CURRENT_TRADE,
   SET_ERROR,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
-import cookie, { set } from "js-cookie";
+import cookie from "js-cookie";
 
 export const buyStock = (stockName, buyPrice, quantity) => async (dispatch) => {
   try {
-    const user = cookie.get("id");
+    const user = cookie.get("welthoid-id");
     setAuthToken(user);
     const config = {
       headers: {
@@ -31,16 +28,21 @@ export const buyStock = (stockName, buyPrice, quantity) => async (dispatch) => {
       type: BUY_TRADE,
       payload: res.data,
     });
-    toastifier("Stock added in your portfolio", { showIcon: true })
+    toastifier("Trade completed", { showIcon: true, aniimation: 'flip' })
+    setTimeout(() => {
+      if (process.browser)
+        window.location.reload()
+    }, 2000)
   } catch (error) {
-      console.error(error);
+    toastifier(error.response.data.message, { type: 'error', showIcon: true, aniimation: 'flip' })
+    console.log(error);
       dispatch({ type: SET_ERROR });
   }
 };
 
 export const sellStock = (stockName, buyPrice, sellPrice, quantity) => async (dispatch) => {
   try {
-    const user = cookie.get("id");
+    const user = cookie.get("welthoid-id");
     setAuthToken(user);
     const config = {
       headers: {
@@ -57,9 +59,14 @@ export const sellStock = (stockName, buyPrice, sellPrice, quantity) => async (di
       type: SELL_TRADE,
       payload: res.data,
     });
-    toastifier("Stock removed from your portfolio", { showIcon: true })
+    toastifier("Trade completed", { showIcon: true, aniimation: 'flip' })
+    setTimeout(() => {
+      if (process.browser)
+        window.location.reload()
+    }, 2000)
   } catch (error) {
-      console.error(error);
+    toastifier(error.message, { type: 'error', showIcon: true, aniimation: 'flip' })
+    console.error(error);
       dispatch({ type: SET_ERROR });
   }
 };

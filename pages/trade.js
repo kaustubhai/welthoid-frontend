@@ -5,7 +5,8 @@ import StockDataSearch from "../components/StockDataSearch";
 import Navbar from "../components/Dashboard_Navbar";
 import axios from "axios";
 import Footer from "../components/Dashboard_Footer";
-const Trade = () => {
+import withAuth from "../components/authentication";
+const trade = () => {
   const [gainers, setGainers] = useState([]);
   const [losers, setLosers] = useState([]);
   const [symbols, setSymbols] = useState([]);
@@ -213,4 +214,4 @@ const Trade = () => {
   );
 };
 
-export default Trade;
+export default withAuth(trade);

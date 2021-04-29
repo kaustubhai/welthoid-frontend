@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux'
 import { sellStock } from '../actions/stockActions'
 
-const TradeModal = ({symbol, name, price, buy}) => {
+const TradeModal = ({symbol, onCloseModal, name, price, buy}) => {
     const [buyPrice, setBuyPrice] = useState()
     const [stock, setStock] = useState({})
     const [quantity, setQuantity] = useState(0)
 
     const dispatch = useDispatch()
     const sell = () => {
-        console.log({symbol, buyPrice, sellPrice: price, quantity});
         dispatch(sellStock(symbol, parseFloat(buyPrice), parseFloat(price), parseFloat(quantity)))
+        onCloseModal()
     }
 
     useEffect(() => {
@@ -37,16 +37,16 @@ const TradeModal = ({symbol, name, price, buy}) => {
             onChange={(e) => setBuyPrice(e.target.value)}
             name="buyPrice"
             id="buyPrice"
-            className="bg-white"
+            className="bg-white text-xl"
           >
             { stock?.buy?.map(p => (
-                <option className="bg-white" value={p.price}>{p.price}</option>
+                <option className="bg-white" value={p.price}>${p.price}</option>
             ))
             }
           </select>
         </div>
         <div className="stock flex w-full justify-around border-b-2 border-gray-300 py-4">
-            <p className="font-semibold text-red-500 font-body text-xl">Sell Price</p><p className="text-xl font-body"> {price}</p>
+            <p className="font-semibold text-red-500 font-body text-xl">Sell Price</p><p className="text-xl font-body"> ${price}</p>
         </div>
         <form>
             <div className="stock flex w-full justify-around py-4">

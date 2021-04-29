@@ -21,15 +21,15 @@ const Navbar = () => {
   };
 
   const loadUser = () => {
-    if(cookie.get('token') !== "undefined"){
+    if(cookie.get('welthoid-token') !== "undefined"){
       const storedUser = {
         profileObj: {
-            name: cookie.get('name'),
-            email: cookie.get('email'),
-            imageUrl: cookie.get('image'),
+            name: cookie.get('welthoid-name'),
+            email: cookie.get('welthoid-email'),
+            imageUrl: cookie.get('welthoid-image'),
         },
-        accessToken: cookie.get('token'),
-        googleId: cookie.get('id')
+        accessToken: cookie.get('welthoid-token'),
+        googleId: cookie.get('welthoid-id')
     }
       dispatch(setUser(storedUser))
     }

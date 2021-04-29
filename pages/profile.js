@@ -19,11 +19,11 @@ const Profile = () => {
   const dispatch = useDispatch();
   const getData = () => {
     let data;
-    data = cookie.get("name");
+    data = cookie.get("welthoid-name");
     setName(data);
-    data = cookie.get("email");
+    data = cookie.get("welthoid-email");
     setEmail(data);
-    data = cookie.get("image");
+    data = cookie.get("welthoid-image");
     setImage(data);
   };
 
@@ -168,10 +168,10 @@ const Profile = () => {
 											))
 									}
                   {
-                    section === "current" && !current && (<div className="flex items-center justify-center w-full"><h1 className="text-red-500 text-center py-5 w-full mx-auto font-body font-bold">No Current Stock</h1></div>)
+                    section === "current" && !current && (<tr><td><p className="text-red-500 text-center py-5 w-full mx-auto font-body font-bold">-- --</p></td><td><p className="text-red-500 text-center py-5 w-full mx-auto font-body font-bold">-- --</p></td><td><p className="text-red-500 text-center py-5 w-full mx-auto font-body font-bold">-- --</p></td><td><p className="text-red-500 text-center py-5 w-full mx-auto font-body font-bold">-- --</p></td></tr>)
                   }
                   {
-                    section === "past" && !past && <h1 className="text-red-500 text-center py-5 w-full mx-auto font-body font-bold">No Past Stock</h1>
+                    section === "past" && !past && (<tr><td><p className="text-red-500 text-center py-5 w-full mx-auto font-body font-bold">-- --</p></td><td><p className="text-red-500 text-center py-5 w-full mx-auto font-body font-bold">-- --</p></td><td><p className="text-red-500 text-center py-5 w-full mx-auto font-body font-bold">-- --</p></td><td><p className="text-red-500 text-center py-5 w-full mx-auto font-body font-bold">-- --</p></td></tr>)
                   }
                 </tbody>
               </table>

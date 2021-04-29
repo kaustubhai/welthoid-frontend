@@ -5,7 +5,7 @@ const initialState = {
     error: "",
 }
 
-export default (state = initialState, actions) => {
+const tradeReducer = (state = initialState, actions) => {
     switch(actions.type){
         case BUY_TRADE:
             return {
@@ -26,3 +26,5 @@ export default (state = initialState, actions) => {
             return state
     }           
 }
+
+export default tradeReducer
