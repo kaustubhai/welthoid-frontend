@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import StockData from "../components/stockData";
+import StockData from "../components/StockData";
 import StockDataSearch from "../components/StockDataSearch";
 import Navbar from "../components/Dashboard_Navbar";
 import axios from "axios";
