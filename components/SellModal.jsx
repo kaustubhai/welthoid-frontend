@@ -50,7 +50,7 @@ const TradeModal = ({symbol, onCloseModal, name, price, buy}) => {
         </div>
         <form>
             <div className="stock flex w-full justify-around py-4">
-                <input value={quantity} onChange={(e) => setQuantity(e.target.value)} onFocus={() => {setQuantity("")}} required type="number" step="1" className="rounded border-2 font-body p-2 border-gray-300" placeholder="Enter Quantity" />
+                <input value={quantity} onChange={(e) => setQuantity(e.target.value)} onFocus={() => {setQuantity("")}} required className="rounded border-2 font-body p-2 border-gray-300" placeholder="Enter Quantity" />
             </div>
             <div className="flex justify-center mt-8 items-center">
                 <button onClick={e => { e.preventDefault(); sell() }} type="submit" className="bg-red-600 hover:bg-red-700 transition duration-200 text-base lg:text-lg text-white font-semibold rounded-lg px-8 py-4">Sell Stock</button>
