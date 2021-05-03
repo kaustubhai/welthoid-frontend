@@ -7,7 +7,7 @@ import toastifier from 'toastifier'
 import 'toastifier/dist/toastifier.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../actions/userActions'
-const Navbar = () => {
+const Navbar = ({ page }) => {
 
   const dispatch = useDispatch()
   const { loading } = useSelector(state => state.user)
@@ -49,28 +49,28 @@ const Navbar = () => {
                   <div>
                   <Link href="/">
                     <a
-                      className={`text-gray-500  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium`}
+                      className={`${page==="home" ? "text-gray-800" : "text-gray-500"} hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium`}
                     >
                         Home
                     </a>
                   </Link>
                   <Link href="/about">
                     <a
-                      className={`text-gray-500 dark:text-white  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium`}
+                      className={`${page==="about" ? "text-gray-800" : "text-gray-500"} dark:text-white  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium`}
                     >
                         About
                     </a>
                   </Link>
                   <Link href="contact">
                     <a
-                      className={`text-gray-500  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium`}
+                      className={`${page==="contact" ? "text-gray-800" : "text-gray-500"}  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium`}
                     >
                         Contact
                     </a>
                   </Link>
                   <Link href="/developer">
                     <a
-                      className={`text-gray-500  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium`}
+                      className={`${page==="developer" ? "text-gray-800" : "text-gray-500"}  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md font-medium`}
                     >
                         Developer
                     </a>
@@ -135,28 +135,28 @@ const Navbar = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link href="/">
               <a
-                className={`text-gray-500 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium`}
+                className={`${page==="home" ? "text-gray-800" : "text-gray-500"}  hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium`}
               >
                 Home
               </a>
             </Link>
             <Link href="/about">
               <a
-                className={`text-gray-800 dark:text-white block px-3 py-2 rounded-md text-base font-medium`}
+                className={`${page==="about" ? "text-gray-800" : "text-gray-500"}   dark:text-white block px-3 py-2 rounded-md text-base font-medium`}
               >
                   About
               </a>
             </Link>
             <Link href="/contact">
             <a
-              className={`text-gray-500 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium`}
+              className={`${page==="contact" ? "text-gray-800" : "text-gray-500"} hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium`}
             >
                 Contact
             </a>
               </Link>
               <Link href="/developer">
             <a
-              className={`text-gray-500 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium`}
+              className={`${page==="developer" ? "text-gray-800" : "text-gray-500"} hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium`}
             >
                 Developer
             </a>

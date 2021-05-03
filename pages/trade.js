@@ -60,7 +60,7 @@ const trade = () => {
   // console.log(stocks.slice(0, 10));
   return (
     <>
-      <Navbar />
+      <Navbar page="trades"/>
       <Head>
         <title>Welthoid - See Trades</title>
       </Head>

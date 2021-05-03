@@ -109,7 +109,7 @@ const Help = () => {
         <h2 className="text-3xl font-body text-center font-extrabold leading-9 border-gray-100 text-gray-900 mb-12">
           FAQs
         </h2>
-        <ul className="grid items-center grid-cols-3 gap-8">
+        <ul className="grid items-center grid-cols-1 lg:grid-cols-3 gap-8">
           <li>
             <p className="text-xl font-semibold leading-6 text-gray-900">
               What is Mose-Bucks?

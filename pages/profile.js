@@ -47,7 +47,7 @@ const Profile = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar page="profile"/>
       <Head>
         <title>Welthoid - {name ? name : "User"}</title>
       </Head>
@@ -71,7 +71,7 @@ const Profile = () => {
 
       <section className="text-gray-600 pb-24 body-font">
         <div className="container px-5 mx-auto flex flex-wrap flex-col">
-          <div className="flex mx-auto flex-wrap mb-20">
+          <div className="flex mx-auto flex-wrap mb-5 lg:mb-20">
             <a
               onClick={() => setSection("current")}
               className={`sm:px-6 py-3 cursor-pointer w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center tracking-wider leading-none ${
@@ -83,9 +83,9 @@ const Profile = () => {
               <svg
                 fill="none"
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 className="w-5 h-5 mr-3"
                 viewBox="0 0 24 24"
               >
@@ -104,9 +104,9 @@ const Profile = () => {
               <svg
                 fill="none"
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 className="w-5 h-5 mr-3"
                 viewBox="0 0 24 24"
               >
@@ -117,7 +117,7 @@ const Profile = () => {
             </a>
           </div>
           
-					<section className="mx-auto px-4 sm:px-8 max-w-3xl">
+					<section className="mx-auto w-full px-4 sm:px-8 max-w-3xl">
         <div className="flex justify-center flex-col">
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 pb-4 overflow-x-auto">
             <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -183,7 +183,7 @@ const Profile = () => {
         </div>
       </section>
 
-      <section className="bg-gray-100 dark:bg-gray-800lg:px-16">
+      <section className="bg-gray-100 dark:bg-gray-800 lg:px-16">
         <div className="w-full flex flex-col text-center lg:text-left lg:flex-row items-center justify-center lg:justify-around  mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
           <h2 className="text-3xl font-extrabold text-black dark:text-white sm:text-4xl">
             <span className="block">You currently have</span>

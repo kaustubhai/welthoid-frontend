@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import LoadingOverlay from "react-loading-overlay";
 import cookie from "js-cookie";
 
-const Navbar = () => {
+const Navbar = ({ page }) => {
   const router = useRouter();
   const { loading } = useSelector(state => state.user)
 
@@ -76,17 +76,17 @@ const Navbar = () => {
           className="navbar-menu hidden md:order-1 md:block w-full md:w-2/5"
         >
           <Link href="/dashboard">
-            <a className="block md:inline-block mt-4 md:mt-0 mr-10 text-gray-500 hover:text-gray-800">
+            <a className={`block md:inline-block mt-4 md:mt-0 mr-10 ${page==="dashboard" ? "text-gray-800" : "text-gray-500"} hover:text-gray-800`}>
               Dashboard
             </a>
           </Link>
           <Link href="/profile">
-            <a className="block md:inline-block mt-4 md:mt-0 mr-10 text-gray-500 hover:text-gray-800">
+            <a className={`block md:inline-block mt-4 md:mt-0 mr-10 ${page==="profile" ? "text-gray-800" : "text-gray-500"} hover:text-gray-800`}>
               Profile
             </a>
           </Link>
           <Link href="/trade">
-            <a className="block md:inline-block mt-4 md:mt-0 text-gray-500 hover:text-gray-800">
+            <a className={`block md:inline-block mt-4 md:mt-0 ${page==="trades" ? "text-gray-800" : "text-gray-500"} hover:text-gray-800`}>
               Trades
             </a>
           </Link>
@@ -96,12 +96,12 @@ const Navbar = () => {
           className="navbar-menu hidden md:order-3 md:block w-full md:w-2/5 md:text-right"
         >
           <Link href="/global-news">
-            <a className="block md:inline-block mt-4 md:mt-0 mr-10 text-gray-500 hover:text-gray-800">
+            <a className={`block md:inline-block mt-4 md:mt-0 mr-10 ${page==="news" ? "text-gray-800" : "text-gray-500"} hover:text-gray-800`}>
               Global News
             </a>
           </Link>
           <Link href="/help">
-            <a className="block md:inline-block mt-4 md:mt-0 mr-10 text-gray-500 hover:text-gray-800">
+            <a className={`block md:inline-block mt-4 md:mt-0 mr-10 ${page==="help" ? "text-gray-800" : "text-gray-500"} hover:text-gray-800`}>
               See Help
             </a>
           </Link>
