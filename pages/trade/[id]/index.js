@@ -43,12 +43,13 @@ const index = () => {
       }
   };
 
-  const fetchNews = async (comp) => {
-      delete axios.defaults.headers.common["x-auth-token"];
+  const fetchNews = async (search) => {
+    delete axios.defaults.headers.common["x-auth-token"];
+    const name = search.split('-')[0].split(' ').join('-')
       const res = await axios.get(
-      `https://newsapi.org/v2/everything?q=${comp.split(' ')[0]}&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/news/one/${name}`
     );
-    setNews(res?.data.articles?.slice(0, 3));
+    setNews(res?.data);
     setNewsLoading(false);
   };
 
