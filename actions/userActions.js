@@ -80,5 +80,5 @@ export const logoutUser = () => async dispatch => {
     cookie.remove("welthoid-token");
     cookie.remove("welthoid-id");
   dispatch({ type: LOGOUT })
-  toastifier("Logout Successfull", { showIcon: true, aniimation: 'flip' })
+  toastifier("Logout Successfull", { showIcon: true, animation: 'flip' })
 }

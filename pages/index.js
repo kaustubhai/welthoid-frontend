@@ -13,6 +13,10 @@ export default function Home() {
         <Head>
           <title>Welthoid- Create wealth virtually</title>
           <link rel="icon" href="/favicon.ico" />
+          <meta charset="utf-8"/>
+          <meta name="description" content="Welthoid is a super user friendly for beginers in the stock market. Here you can invest virtual Mose Bucks into the real stock market exchange and track your virtual money going up and down in real market" />
+          <meta name="keywords" content="Kaustubhai, Stock, Market, Investment, Practice, Realtime, mern stack, web projects, react, node, express, college project" />
+          <meta name="author" content="Kaustubhai" />
         </Head>
         <section
           id="header"

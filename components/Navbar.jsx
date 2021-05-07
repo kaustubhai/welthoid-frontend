@@ -23,7 +23,7 @@ const Navbar = ({ page }) => {
   const responseGoogle = async response => {
     dispatch(setUser(response))
     router.push('/dashboard')
-    toastifier("Login Successful", { showIcon: true, aniimation: 'flip' })
+    toastifier("Login Successful", { showIcon: true, animation: 'flip' })
   }
 
   const loginError = (response) => {

@@ -28,13 +28,13 @@ export const buyStock = (stockName, buyPrice, quantity) => async (dispatch) => {
       type: BUY_TRADE,
       payload: res.data,
     });
-    toastifier("Trade completed", { showIcon: true, aniimation: 'flip' })
+    toastifier("Trade completed", { showIcon: true, animation: 'flip' })
     setTimeout(() => {
       if (process.browser)
         window.location.reload()
     }, 2000)
   } catch (error) {
-    toastifier(error.response.data.message, { type: 'error', showIcon: true, aniimation: 'flip' })
+    toastifier(error.response.data.message, { type: 'error', showIcon: true, animation: 'flip' })
     console.log(error);
       dispatch({ type: SET_ERROR });
   }
@@ -59,13 +59,13 @@ export const sellStock = (stockName, buyPrice, sellPrice, quantity) => async (di
       type: SELL_TRADE,
       payload: res.data,
     });
-    toastifier("Trade completed", { showIcon: true, aniimation: 'flip' })
+    toastifier("Trade completed", { showIcon: true, animation: 'flip' })
     setTimeout(() => {
       if (process.browser)
         window.location.reload()
     }, 2000)
   } catch (error) {
-    toastifier(error.message, { type: 'error', showIcon: true, aniimation: 'flip' })
+    toastifier(error.message, { type: 'error', showIcon: true, animation: 'flip' })
     console.error(error);
       dispatch({ type: SET_ERROR });
   }
