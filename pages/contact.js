@@ -1,10 +1,52 @@
 import React from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import Head from "next/head";
+import GoogleLogin from "react-google-login";
+import toastifier from "toastifier";
+import "toastifier/dist/toastifier.min.css";
 
 const Contact = () => {
+  const responseGoogle = async (response) => {
+    dispatch(setUser(response));
+    router.push("/dashboard");
+    toastifier("Login Successful", { showIcon: true, animation: "flip" });
+  };
+
+  const loginError = (response) => {
+    if (response.error !== "popup_closed_by_user") {
+      toastifier("Aww Snap! Try again later", {
+        type: "error",
+        showIcon: true,
+      });
+      console.log({
+        loginError: response,
+      });
+    }
+  };
+
+  const copyLink = () => {
+    if (process.browser) {
+      var inputc = document.body.insertAdjacentElement(
+        "beforeend",
+        document.createElement("input")
+      );
+      inputc.value = window.location.href.split('/')[0] + window.location.href.split('/')[1] + window.location.href.split('/')[2];
+      inputc.focus();
+      inputc.select();
+      document.execCommand("copy");
+      inputc.parentNode.removeChild(inputc);
+      toastifier("Link Copied", {
+        animation: 'flip'
+      });
+    }
+  };
+
   return (
     <>
+    <Head>
+      <title>Welthoid- Contact Us</title>
+    </Head>
       <Navbar page="contact" />
       <h2 className="font-body text-center text-4xl mt-10 font-bold">
               Contact Welthoid
@@ -88,15 +130,31 @@ const Contact = () => {
           </h2>
           <div className="lg:mt-0 lg:flex-shrink-0 mt-5">
             <div className=" inline-flex rounded-md shadow">
-              <button
-                type="button"
-                className="py-4 px-6  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center  font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
-              >
-                Get started
-              </button>
+            <GoogleLogin
+                  clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
+                  render={(renderProps) => (
+                    <a
+                      className="ml-auto text-right"
+                      onClick={() => {
+                        renderProps.onClick();
+                      }}
+                    >
+                    <button
+                      type="button"
+                      className="py-4 px-6  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center  font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                    >
+                      Get started
+                    </button>
+                    </a>
+                  )}
+                  isSignedIn={true}
+                  onSuccess={responseGoogle}
+                  onFailure={loginError}
+                />
             </div>
             <div className="ml-3 inline-flex rounded-md shadow">
               <button
+                onClick={copyLink}
                 type="button"
                 className="py-4 px-6  bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center  font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
               >

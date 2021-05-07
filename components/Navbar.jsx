@@ -27,10 +27,11 @@ const Navbar = ({ page }) => {
   }
 
   const loginError = (response) => {
+    if(response.error !== 'popup_closed_by_user'){
     toastifier("Aww Snap! Try again later", { type: 'error', showIcon: true })
     console.log({
       loginError: response
-    })
+    })}
   }
 
   return (
