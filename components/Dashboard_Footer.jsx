@@ -11,28 +11,28 @@ const Footer = () => {
     <footer className="bg-white dark:bg-gray-800 w-full py-8">
       <div className="max-w-screen-xl mx-auto px-4">
         <ul className="max-w-screen-md mx-auto text-lg font-light flex flex-wrap justify-between">
-          <li className="my-2">
+          <li className="my-2 block lg:relative w-full lg:w-max lg:text-left  text-center ">
             <Link href="/dashboard">
               <a className="text-gray-400 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white transition-colors duration-200">
                 Dashboard
               </a>
             </Link>
           </li>
-          <li className="my-2">
+          <li className="my-2 block lg:relative w-full lg:w-max lg:text-left  text-center ">
             <Link href="/profile">
               <a className="text-gray-400 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white transition-colors duration-200">
                 Profile
               </a>
             </Link>
           </li>
-          <li className="my-2">
+          <li className="my-2 block lg:relative w-full lg:w-max lg:text-left  text-center ">
             <Link href="/trade">
               <a className="text-gray-400 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white transition-colors duration-200">
                 Search Stocks
               </a>
             </Link>
           </li>
-          <li className="my-2">
+          <li className="my-2 block lg:relative w-full lg:w-max lg:text-left  text-center ">
             <Link href="/global-news">
               <a className="text-gray-400 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white transition-colors duration-200">
                 Global News

@@ -19,11 +19,11 @@ const TradeModal = ({symbol, price, onCloseModal}) => {
     }
 
   return (
-    <div className="flex justify-center items-center px-16 pb-8 flex-col">
+    <div className="flex justify-center items-center lg:px-16 pb-8 flex-col">
         <h1 className="text-4xl mt-8 mb-2 text-gray-800 font-semibold font-body">
             Welthoid
         </h1>
-        <h1 className="text-green-500 px-5 pb-10 text-xl font-bold font-body">
+        <h1 className="text-green-500 px-5 pb-10 text-xl font-bold text-center font-body">
           You are one step away
         </h1>
         <div className="stock flex w-full justify-around border-b-2 border-gray-300 py-4">

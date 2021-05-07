@@ -3,8 +3,6 @@ import Navbar from "../components/Dashboard_Navbar";
 import Link from "next/link";
 import Head from "next/head";
 import { useSelector } from 'react-redux'
-import toastifier from 'toastifier'
-import 'toastifier/dist/toastifier.min.css'
 import Footer from "../components/Dashboard_Footer";
 import withAuth from '../components/authentication'
 
@@ -27,10 +25,7 @@ const Dashboard = () => {
             You can now trade, track, earn or lose your mose buck succesfully
           </p>
           <Link href="/help">
-          <a onClick={() => {
-            toastifier('Check', {
-              onhoverPause: true
-            })}}  className="bg-red-600 hover:bg-red-700 transition duration-200 text-base lg:text-lg text-white font-semibold rounded-lg px-8 py-4">
+          <a className="bg-red-600 hover:bg-red-700 transition duration-200 text-base lg:text-lg text-white font-semibold rounded-lg px-8 py-4">
               How to Start
             </a>
           </Link>
@@ -61,9 +56,9 @@ const Dashboard = () => {
       <section className="w-full flex items-center mt-40 mb-20 flex-col">
         <h3 className="font-body font-bold text-4xl text-center mb-10">Learn from the masters</h3>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/NL9RT5S2i-c?controls=0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/0t_VoN_xYGY?controls=0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/QzvRxoJCaRA?controls=0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <iframe style={{height: "100%", width: "100%", minWidth: "320px", minHeight: "200px"}} src="https://www.youtube.com/embed/NL9RT5S2i-c?controls=0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <iframe style={{height: "100%", width: "100%", minWidth: "320px", minHeight: "200px"}} src="https://www.youtube.com/embed/0t_VoN_xYGY?controls=0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <iframe style={{height: "100%", width: "100%", minWidth: "320px", minHeight: "200px"}} src="https://www.youtube.com/embed/QzvRxoJCaRA?controls=0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </div>
       </section>
       <Footer/>

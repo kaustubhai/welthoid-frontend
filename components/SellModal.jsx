@@ -20,11 +20,11 @@ const TradeModal = ({symbol, onCloseModal, name, price, buy}) => {
     } , [buy])
 
   return (
-    <div className="flex justify-center items-center px-16 pb-8 flex-col">
+    <div className="flex justify-center items-center md:px-16 pb-8 flex-col">
         <h1 className="text-4xl mt-8 mb-2 text-gray-800 font-semibold font-body">
             Welthoid
         </h1>
-        <h1 className="text-red-500 px-5 pb-10 text-xl font-bold font-body">
+        <h1 className="text-red-500 px-5 text-center pb-10 text-xl font-bold font-body">
           You are one step away
         </h1>
         <div className="stock flex w-full justify-around border-b-2 border-gray-300 py-4">

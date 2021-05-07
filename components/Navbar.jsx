@@ -36,7 +36,7 @@ const Navbar = ({ page }) => {
 
   return (
     <LoadingOverlay active={loading} spinner>
-      <nav className="bg-white dark:bg-gray-800 shadow">
+      <nav className="bg-white dark:bg-gray-800 shadow fixed z-50 lg:relative w-full top-0 left-0">
         <div className="max-w-8xl mx-auto px-8">
           <div className="flex items-center justify-between h-16">
             <div className=" flex items-center w-full">

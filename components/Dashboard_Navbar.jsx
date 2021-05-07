@@ -48,7 +48,7 @@ const Navbar = ({ page }) => {
 
   return (
     <LoadingOverlay active={loading} spinner>
-      <nav className="flex bg-white flex-wrap items-center justify-between px-8 shadow py-3">
+      <nav className="flex bg-white flex-wrap items-center justify-between fixed lg:relative z-50 w-full top-0 left-0 px-8 shadow py-3">
         <div className="md:order-2 w-auto md:w-1/5 md:text-center">
           <Link href="/dashboard">
             <a className="text-xl text-gray-800 font-semibold font-body">

@@ -48,13 +48,13 @@ const Contact = () => {
       <title>Welthoid- Contact Us</title>
     </Head>
       <Navbar page="contact" />
-      <h2 className="font-body text-center text-4xl mt-10 font-bold">
+      <h2 className="font-body text-center text-4xl mt-24 lg:mt-10 font-bold">
               Contact Welthoid
       </h2>
           
 <div className="w-full flex justify-center mb-20">
     <form className="flex w-full max-w-sm justify-center space-x-3">
-        <div className="w-full max-w-7xl mx-auto px-5 py-10 m-auto mt-10 bg-white rounded-lg shadow dark:bg-gray-800">
+        <div className="w-full max-w-7xl mx-auto px-5 lg:py-10 m-auto mt-10 bg-white rounded-lg shadow dark:bg-gray-800">
             <div className="grid max-w-xl grid-cols-2 gap-4 m-auto">
                 <div className="col-span-2 lg:col-span-1">
                     <div className=" relative ">
@@ -132,16 +132,17 @@ const Contact = () => {
             <div className=" inline-flex rounded-md shadow">
             <GoogleLogin
                   clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
+                  className="mx-auto"
                   render={(renderProps) => (
                     <a
-                      className="ml-auto text-right"
+                    className="mx-auto"
                       onClick={() => {
                         renderProps.onClick();
                       }}
                     >
                     <button
                       type="button"
-                      className="py-4 px-6  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center  font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                      className="py-4 px-6 mx-auto bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center  font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
                     >
                       Get started
                     </button>

@@ -61,7 +61,7 @@ export default function Home() {
               clientId={process.env.NEXT_PUBLIC_CLIENT_ID}
               render={(renderProps) => (
                 <a
-                  className="ml-auto text-right"
+                  className="mx-auto text-right"
                   onClick={() => {
                     renderProps.onClick();
                   }}
@@ -81,7 +81,7 @@ export default function Home() {
           </div>
           <img
             src="/svg/header.svg"
-            className="image w-full lg:w-7/12 my-8 lg:my-20 lg:ml-20"
+            className="image w-full lg:w-7/12 mt-24 lg:mt-8 my-8 lg:my-20 lg:ml-20"
           />
         </section>
 

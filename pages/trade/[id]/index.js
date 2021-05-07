@@ -93,7 +93,7 @@ const index = () => {
         <>
           <section className="lg:px-40 px-16 flex lg:flex-row flex-col my-10 lg:my-20 justify-between items-center">
             <div className="">
-              <h1 className="text-4xl text-red-500 font-bold font-body">
+              <h1 className="text-4xl text-center lg:text-left text-red-500 font-bold font-body">
                 {stock.symbol}
               </h1>
               <h2 className="text-2xl max-w-lg">{stock.companyName}</h2>
@@ -116,7 +116,7 @@ const index = () => {
             </div>
           </section>
 
-          <section className="lg:px-40 px-16 flex flex-col justify-center items-center">
+          <section className="lg:px-40 px-4 flex flex-col justify-center items-center">
             <h1 className="font-body font-semibold my-10 text-2xl">
               Key Statistics
             </h1>
@@ -125,29 +125,29 @@ const index = () => {
                 <span className="font-bold text-red-500 text-xl">Open:</span>
                 <span className="text-xl">${stock.iexOpen || " ---"}</span>
               </div>
-              <div className="row flex justify-between shadow px-16 py-8 items-center">
+              <div className="row flex justify-between shadow px-4 lg:px-16 py-8 w-full items-center">
                 <span className="font-bold text-red-500 text-xl">Close:</span>
                 <span className="text-xl">${stock.iexClose || " ---"}</span>
               </div>
-              <div className="row flex justify-between shadow px-16 py-8 items-center">
+              <div className="row flex justify-between shadow px-4 lg:px-16 py-8 w-full items-center">
                 <span className="font-bold text-red-500 text-xl">Volume:</span>
                 <span className=" text-xl">{stock.volume || " ---"}</span>
               </div>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 w-full gap-5">
-              <div className="row flex justify-between shadow px-16 py-8 w-full items-center">
+              <div className="row flex justify-between shadow px-4 lg:px-16 py-8 w-full items-center">
                 <span className="font-bold text-red-500 text-xl">
                   52 Week High:
                 </span>
                 <span className="text-xl">${stock.week52High || " ---"}</span>
               </div>
-              <div className="row flex justify-between shadow px-16 py-8 items-center">
+              <div className="row flex justify-between shadow px-4 lg:px-16 py-8 w-full items-center">
                 <span className="font-bold text-red-500 text-xl">
                   52 Week Low:
                 </span>
                 <span className="text-xl">${stock.week52Low || " ---"}</span>
               </div>
-              <div className="row flex justify-between shadow px-16 py-8 items-center">
+              <div className="row flex justify-between shadow px-4 lg:px-16 py-8 w-full items-center">
                 <span className="font-bold text-red-500 text-xl">
                   Market Cap:
                 </span>
@@ -156,7 +156,7 @@ const index = () => {
             </div>
           </section>
           <section className="flex flex-col items-center justify-center mx-5 my-10 lg:flex-row">
-            <button onClick={onOpenModal} className="bg-green-600 mx-3 hover:bg-green-700 transition duration-200 text-base lg:text-lg text-white font-semibold rounded-lg px-8 py-4">
+            <button onClick={onOpenModal} className="bg-green-600 mx-3 my-3 lg:my-0 hover:bg-green-700 transition duration-200 text-base lg:text-lg text-white font-semibold rounded-lg px-8 py-4">
               Buy {stock.symbol}
             </button>
             <button disabled={!sell} onClick={onOpenModal2} className={`bg-red-600 mx-3 hover:bg-red-700 transition duration-200 text-base lg:text-lg text-white font-semibold rounded-lg px-8 py-4 ${sell ? "" : "cursor-not-allowed"}`}>
@@ -166,8 +166,8 @@ const index = () => {
                       
 
           <section className="w-full bg-white mt-3 md:px-16 px-2 lg:px-28 py-12">
-            <div className="lg:px-40 px-16 flex flex-col justify-center items-center">
-              <h1 className="font-body font-semibold my-10 text-2xl">
+            <div className="lg:px-40 px-4 flex flex-col justify-center items-center">
+              <h1 className="font-body text-center lg:text-left font-semibold my-10 text-2xl">
               Latest News about {stock.companyName?.split('-')[0]}
             </h1>
             </div>
