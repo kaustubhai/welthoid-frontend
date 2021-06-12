@@ -12,10 +12,10 @@ const tradeReducer = (state = initialState, actions) => {
                 ...state,
                 trade: actions.payload
             }
-        case SET_ERROR:
+        case SELL_TRADE:
             return {
                 ...state,
-                error: actions.payload
+                trade: actions.payload
             }
         case SET_ERROR:
             return {
