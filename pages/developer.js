@@ -71,7 +71,7 @@ const Developer = () => {
           </a>
         </div>
         <div className="overflow-hidden mx-auto my-5 shadow-lg rounded-lg h-90 w-60 md:w-80 cursor-pointer m-auto">
-          <a href="https://news-de-voice.web.app/" className="w-full block h-full">
+          <a href="https://news-de-voice.netlify.app/" className="w-full block h-full">
             <img
               alt="blog photo"
               src="/projects/News-De-Voice.webp"
